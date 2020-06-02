@@ -19,13 +19,12 @@ server.get("/ssr", async function(req, res) {
 });
 server.get("/flush", async function(req, res) {
   res.write(headTemplate);
-  // console.log(result);
   res.flush();
   const comments = await fetchComments();
   setTimeout(function() {
     const content = renderToString(view({...state, comments}));
     res.end(bodyTemplate.replace("<section></section>", content));
-  }, 1000);
+  }, 5000);
 });
 server.get("/data.json", (req, res) => {
   fs.createReadStream("./data.json").pipe(res);
