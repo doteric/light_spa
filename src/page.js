@@ -1,8 +1,8 @@
 import html from "./html.js";
 import {fetchComments} from "./commentsHttpClient.js";
-import Comments from "./comments.js";
-// import { lazy } from "./lazy.js";
-// const {LazyComponent:Comments, Load: LoadComments} = lazy(() => import("./comments.js"));
+// import Comments from "./comments.js";
+import { lazy } from "./lazy.js";
+const {LazyComponent:Comments, Load: LoadComments} = lazy(() => import("./comments.js"));
 
 export const state = {
   showComments: false,
@@ -51,7 +51,7 @@ export const view = state => html`
           placerat massa. Donec quis lacinia lorem.
         </p>
       </div>
-      <button onclick=${ToggleComments}>Toggle comments</button>
+      <button onclick=${ToggleComments} onmouseover=${LoadComments}>Toggle comments</button>
       <button onclick=${FetchCommentsAction}>Fetch comments</button>
       ${state.showComments
   ? html`
