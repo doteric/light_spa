@@ -1,6 +1,6 @@
 import express from "express";
 import compression from "compression";
-import render from "hyperapp-render";
+import {renderToString} from "hyperapp-render";
 import fs from "fs";
 import { state, view } from "./src/page.js";
 import {fetchComments} from "./src/commentsHttpClient.js";
@@ -14,7 +14,7 @@ const bodyTemplate = fs.readFileSync(`${assetsDir}/body.html`, "UTF-8");
 server.use(compression());
 server.get("/ssr", async function(req, res) {
   const comments = await fetchComments();
-  const content = render.renderToString(view({...state, comments}));
+  const content = renderToString(view({...state, comments}));
   res.send(htmlTemplate.replace("<!-- PLACEHOLDER -->", content));
 });
 server.get("/flush", async function(req, res) {
@@ -23,7 +23,7 @@ server.get("/flush", async function(req, res) {
   res.flush();
   const comments = await fetchComments();
   // setTimeout(function() {
-    const content = render.renderToString(view({...state, comments}));
+    const content = renderToString(view({...state, comments}));
     res.end(bodyTemplate.replace("<!-- PLACEHOLDER -->", content));
   // }, 1000);
 });

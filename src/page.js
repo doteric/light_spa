@@ -1,13 +1,11 @@
 import html from "./html.js";
-import { lazy } from "./lazy.js";
 import {fetchComments} from "./commentsHttpClient.js";
-// import data from "./data.js";
 import Comments from "./comments.js";
-
+// import { lazy } from "./lazy.js";
 // const {LazyComponent:Comments, Load: LoadComments} = lazy(() => import("./comments.js"));
 
 export const state = {
-  showComments: true,
+  showComments: false,
   comments: []
 };
 
