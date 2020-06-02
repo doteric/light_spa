@@ -12,12 +12,12 @@ const Comment = (c, index) => html`
         </div>
       `;
 
-// const memoizedComment = memoize(Comment);
+const memoizedComment = memoize(Comment);
 
 const Comments = ({ comments }) => html`
   <section class="post__comments">
     <h1>Comments</h1>
-    ${comments.map(Comment)}
+    ${comments.map(memoizedComment)}
   </section>
 `;
 
