@@ -8,7 +8,6 @@
     "install:dev": "snowpack install --exclude server.js",
     "build:snowpack": "snowpack build --exclude server.js",
     "build:esbuild": "esbuild --bundle --minify src/index.js --outfile=build/src/index.js",
-    "build1": "parcel build index.html head.html body.html --experimental-scope-hoisting",
     "format": "prettier --write \"src/**/*.js\"",
     "test": "bundlesize"
   },
