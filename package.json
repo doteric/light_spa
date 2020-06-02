@@ -1,0 +1,46 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "npm-run-all install:dev server:dev",
+    "prod": "npm-run-all build:snowpack server:prod",
+    "server:prod": "cross-env NODE_ENV=production node server.js",
+    "server:dev": "node server.js",
+    "install:dev": "snowpack install --exclude server.js",
+    "build:snowpack": "snowpack build --exclude server.js",
+    "build:esbuild": "esbuild --bundle --minify src/index.js --outfile=build/src/index.js",
+    "build1": "parcel build index.html head.html body.html --experimental-scope-hoisting",
+    "format": "prettier --write \"src/**/*.js\"",
+    "test": "bundlesize"
+  },
+  "dependencies": {
+    "compression": "1.7.4",
+    "express": "4.17.1",
+    "htm": "2.2.1",
+    "hyperapp": "2.0.3",
+    "hyperapp-render": "3.4.0",
+    "isomorphic-fetch": "2.2.1"
+  },
+  "devDependencies": {
+    "@snowpack/plugin-parcel": "1.0.0",
+    "bundlesize": "0.18.0",
+    "cross-env": "6.0.3",
+    "esbuild": "0.4.3",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.0.5",
+    "snowpack": "2.1.1"
+  },
+  "browserslist": [
+    "> 0.25%, not dead"
+  ],
+  "bundlesize": [
+    {
+      "path": "./build/*.js",
+      "maxSize": "10 kB"
+    }
+  ],
+  "snowpack": {
+    "plugins": [
+      "@snowpack/plugin-parcel"
+    ]
+  }
+}

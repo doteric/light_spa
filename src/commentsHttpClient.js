@@ -1,0 +1,1 @@
+export const fetchComments = () => fetch("http://localhost:3000/public/data.json").then(res => res.json());
