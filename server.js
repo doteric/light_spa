@@ -15,17 +15,17 @@ server.use(compression());
 server.get("/ssr", async function(req, res) {
   const comments = await fetchComments();
   const content = renderToString(view({...state, comments}));
-  res.send(htmlTemplate.replace("<!-- PLACEHOLDER -->", content));
+  res.send(htmlTemplate.replace("<section></section>", content));
 });
 server.get("/flush", async function(req, res) {
   res.write(headTemplate);
   // console.log(result);
   res.flush();
   const comments = await fetchComments();
-  // setTimeout(function() {
+  setTimeout(function() {
     const content = renderToString(view({...state, comments}));
-    res.end(bodyTemplate.replace("<!-- PLACEHOLDER -->", content));
-  // }, 1000);
+    res.end(bodyTemplate.replace("<section></section>", content));
+  }, 1000);
 });
 server.get("/data.json", (req, res) => {
   fs.createReadStream("./data.json").pipe(res);

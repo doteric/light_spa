@@ -4,5 +4,5 @@ import {view, state, FetchComments} from "./page.js";
 app({
   init: [state, FetchComments],
   view,
-  node: document.body
+  node: document.querySelector("section")
 });
