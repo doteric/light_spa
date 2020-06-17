@@ -1,5 +1,8 @@
 {
   "type": "module",
+  "engines": {
+    "node": ">=13"
+  },
   "scripts": {
     "dev": "npm-run-all install:dev server:dev",
     "prod": "npm-run-all build:snowpack server:prod",
